@@ -1,15 +1,12 @@
 import java.util.*;
 
-public class Contact implements Comparable<String> {
+public class Contact { 
     private String contactName;
     private String phoneNumber;
     private String emailAddress;
     private String address;
     private String birthday;
     private String notes;
-    private BST<Event> eventsForContact;
-
-
 
     public Contact(String contactName, String phoneNumber, String emailAddress, String address, String birthday, String notes) {
         this.contactName = contactName;
@@ -18,32 +15,30 @@ public class Contact implements Comparable<String> {
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
-        eventsForContact=new BST<>();
+
     }
 
     public Contact() {
-        contactName = "";
-        this.phoneNumber = "";
-        this.emailAddress = "";
-        this.address = "";
-        this.birthday = "";
-        this.notes = "";
-        this.eventsForContact=new BST<>();
+        this("", "", "", "", "", "");
     }
 
-    public Contact(String contactName) {
-        contactName = contactName;
-    }
 
     public String getContactName() {
         return contactName;
     }
 
-    public String getFirstName()
-    {
-        String nameWithoutExtraSpaces=getContactName().trim();
-        return nameWithoutExtraSpaces.substring(0,nameWithoutExtraSpaces.indexOf(" "));
 
+    public String getFirstName() {
+        if (contactName == null || contactName.trim().isEmpty()) {
+            return "";
+        }
+        String trimmedName = contactName.trim();
+        int firstSpaceIndex = trimmedName.indexOf(" ");
+        if (firstSpaceIndex == -1) {
+            return trimmedName; 
+        } else {
+            return trimmedName.substring(0, firstSpaceIndex);
+        }
     }
 
     public String getPhoneNumber() {
@@ -62,13 +57,13 @@ public class Contact implements Comparable<String> {
         return birthday;
     }
 
-
-    public BST<Event> getEventsForContact() {
-        return eventsForContact;
-    }
-
     public String getNotes() {
         return notes;
+    }
+
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -91,19 +86,14 @@ public class Contact implements Comparable<String> {
         this.notes = notes;
     }
 
-    @Override
-    public int compareTo(String otherContactName) {
-
-        return contactName.compareTo(otherContactName);
-    }
 
     @Override
     public String toString() {
-        return "Name: " + contactName +
-                "\nPhone Number: " + phoneNumber +
-                "\nEmail Address: " + emailAddress +
-                "\nAddress: " + address +
-                "\nBirthday: " + birthday +
-                "\nNotes: " + notes;
+        return "Name: " + (contactName != null ? contactName : "N/A") +
+                "\nPhone Number: " + (phoneNumber != null ? phoneNumber : "N/A") +
+                "\nEmail Address: " + (emailAddress != null ? emailAddress : "N/A") +
+                "\nAddress: " + (address != null ? address : "N/A") +
+                "\nBirthday: " + (birthday != null ? birthday : "N/A") +
+                "\nNotes: " + (notes != null ? notes : "N/A");
     }
 }
