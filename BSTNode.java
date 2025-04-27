@@ -1,6 +1,6 @@
 public class BSTNode <T> {
-    private String key;
-    private T data;
+    private String key; 
+    private T data;   
     private BSTNode<T> left, right;
 
     public BSTNode(String k, T val) {
@@ -9,8 +9,7 @@ public class BSTNode <T> {
         left = right = null;
     }
 
-
-
+    // Getters
     public T getData() {
         return data;
     }
@@ -27,6 +26,7 @@ public class BSTNode <T> {
         return right;
     }
 
+    // Setters
     public void setLeft(BSTNode<T> left) {
         this.left = left;
     }
@@ -38,5 +38,8 @@ public class BSTNode <T> {
     public void setKey(String key) {
         this.key = key;
     }
-}
 
+    public void setData(T data) {
+        this.data = data;
+    }
+}
